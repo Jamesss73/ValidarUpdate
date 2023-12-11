@@ -2,9 +2,11 @@ create or replace package updatePackage is
     procedure spValidarExistenciaTabla(v_nombreTabla in VARCHAR2,V_EXISTE out VARCHAR2);
     procedure spValidarDatosTabla(v_nombreTabla in VARCHAR2,V_EXISTE out VARCHAR2);
     procedure spValidarColumna (v_nombreTabla in VARCHAR2, v_nombreColumna in VARCHAR2,V_EXISTE out VARCHAR2);
-    procedure prcActualizarTabla (v_primarykey IN Teclado.tecCodigo%TYPE,v_tecMarca IN Teclado.tecMarca%TYPE,
-    v_telFechaElab IN Teclado.telFechaElab%TYPE,v_tecIdioma IN Teclado.tecIdioma%TYPE);
+PROCEDURE spcActualizarTabla ( v_updateQuery IN VARCHAR2 );
+  PROCEDURE spCONSULTADICCIONARIO(o_cursor IN OUT SYS_REFCURSOR, V_COL IN VARCHAR2);
 end updatePackage;
+
+
 
 
 create or replace package body updatePackage is
@@ -54,12 +56,26 @@ END spValidarExistenciaTabla;
 
     
     --Procedimiento para actualizar datos de la tabla
-    procedure prcActualizarTabla (
-    v_primarykey IN Teclado.tecCodigo%TYPE,v_tecMarca IN Teclado.tecMarca%TYPE,
-    v_telFechaElab IN Teclado.telFechaElab%TYPE,v_tecIdioma IN Teclado.tecIdioma%TYPE)
-    is
-    begin
-        update teclado set tecMarca = v_tecMarca,telFechaElab = v_telFechaElab,tecIdioma = v_tecIdioma where tecCodigo = v_primarykey;
-    end prcActualizarTabla;
-    
+PROCEDURE spcActualizarTabla (
+    v_updateQuery IN VARCHAR2 -- Sentencia UPDATE completa
+)
+IS
+BEGIN
+    -- Ejecutar la sentencia UPDATE recibida como parámetro
+    EXECUTE IMMEDIATE v_updateQuery;
+
+    -- Si la actualización se realiza correctamente, no se lanzará ninguna excepción
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Manejo de la excepción en caso de error
+        RAISE_APPLICATION_ERROR(-20001, 'Error al ejecutar la sentencia UPDATE: ' || SQLERRM);
+END spcActualizarTabla;
+
+   PROCEDURE spCONSULTADICCIONARIO(o_cursor IN OUT SYS_REFCURSOR, V_COL IN VARCHAR2)
+    IS
+    BEGIN
+        OPEN o_cursor FOR
+        'SELECT '||V_COL|| ' FROM ALL_TAB_COLUMNS WHERE TABLE_NAME = ''MOTO''';
+    END spCONSULTADICCIONARIO;
+
 end updatePackage;

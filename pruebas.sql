@@ -8,6 +8,8 @@ update Teclado set TECMARCA = 'MOSAS2',tecidioma = 'e', TELFECHAELAB = '10/12/21
 
 update Teclado set TECMARCA = 'MOSAS2',TECMARCA = 'MOSAS2',tecidioma = 'e', TELFECHAELAB = '10/12/21', teccodigo = 201  WHERE TECCODIGO = 01;
 
+
+
 SET SERVEROUTPUT ON
 
 DECLARE
@@ -22,6 +24,8 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('La tabla ' || nombre_tabla || ' NO existe en la base de datos.');
     END IF;
 END;
+
+
 
 SET SERVEROUTPUT ON
 
