@@ -29,9 +29,10 @@ namespace FinalBasesDatosII
             string sentenciaUpdate = txtUpdate.Text.Trim();
             sentenciaUpdate = sentenciaUpdate.ToUpper();
 
-            if (servicios.ValidarSintaxis(sentenciaUpdate)) {
-            }
-                 
+            DataTable dt = servicios.ValidarSintaxis(sentenciaUpdate);
+            dtNotificacion.DataSource = dt; 
+
+
         }
 
 

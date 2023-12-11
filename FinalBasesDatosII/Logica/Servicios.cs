@@ -1,6 +1,7 @@
 ﻿using FinalBasesDatosII.Datos;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,7 +16,7 @@ namespace FinalBasesDatosII.Logica
 
         //Crear metodo para validar existencia de la Tabla
 
-        public bool ValidarSintaxis(string sentenciaSQL)
+        public DataTable ValidarSintaxis(string sentenciaSQL)
         {
             string pattern = @"^UPDATE\s+([\w\d_]+)\s+SET\s+((?:\w+\s*=\s*[\w\d'/]+(?:,\s*)?)+)\s+WHERE\s+(.+);$";
 
@@ -35,20 +36,50 @@ namespace FinalBasesDatosII.Logica
                 Console.WriteLine("Nombres de las columnas:");
                 if (nombresColumnas.Length > 4||nombresColumnas.Length <= 0)
                 {
-                    return false;
+                    return new DataTable();
                 }
-                else { 
+                else {
+                    // Crear un DataTable para almacenar los resultados
+                    DataTable resultadosTabla = new DataTable();
+
+                    // Agregar columnas al DataTable para representar los resultados de los métodos
+                    resultadosTabla.Columns.Add("NombreTabla", typeof(string));
+                    resultadosTabla.Columns.Add("ExistenciaTabla", typeof(bool));
+                    resultadosTabla.Columns.Add("DatosValidados", typeof(bool));
+                    resultadosTabla.Columns.Add("ColumnasValidadas", typeof(string));
+
+                    // Suponiendo que tienes una lista de nombres de columnas
+
+                    // Suponiendo que tienes los métodos para validar existencia, datos y columnas
+                    bool existeTabla = validarExistenciaTabla(nombreTabla);
+                    bool datosValidados = ValidarDatosTabla(nombreTabla);
+                    string columnasValidadas="";
+
+              
                     validarExistenciaTabla(nombreTabla);
                     ValidarDatosTabla(nombreTabla);
                     foreach (string nombreColumna in nombresColumnas ) {
-                        ValidarColumna(nombreTabla, nombreColumna); 
+                        columnasValidadas += nombreColumna;
+                        if (ValidarColumna(nombreTabla, nombreColumna))
+                        {
+                            columnasValidadas += ": Si";
+                        }
+                        else {
+                            columnasValidadas += ": No";
+
+                        }
                     }
-                    return true;
+                    // Agregar los resultados a una fila en el DataTable
+                    resultadosTabla.Rows.Add(nombreTabla, existeTabla, datosValidados, columnasValidadas);
+
+
+
+                    return resultadosTabla;
 
                 }
 
             }
-            return false;
+            return new DataTable();
 
         }
 

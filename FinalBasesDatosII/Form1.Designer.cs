@@ -31,7 +31,7 @@
             this.txtUpdate = new System.Windows.Forms.TextBox();
             this.lbMensaje = new System.Windows.Forms.Label();
             this.btnActualizar = new System.Windows.Forms.Button();
-            this.rtbNotificacion = new System.Windows.Forms.RichTextBox();
+            this.dtNotificacion = new System.Windows.Forms.DataGrid();
             this.SuspendLayout();
             // 
             // txtUpdate
@@ -62,18 +62,18 @@
             // 
             // rtbNotificacion
             // 
-            this.rtbNotificacion.Location = new System.Drawing.Point(24, 165);
-            this.rtbNotificacion.Name = "rtbNotificacion";
-            this.rtbNotificacion.Size = new System.Drawing.Size(753, 265);
-            this.rtbNotificacion.TabIndex = 3;
-            this.rtbNotificacion.Text = "";
+            this.dtNotificacion.Location = new System.Drawing.Point(24, 165);
+            this.dtNotificacion.Name = "dtNotificacion";
+            this.dtNotificacion.Size = new System.Drawing.Size(753, 265);
+            this.dtNotificacion.TabIndex = 3;
+            this.dtNotificacion.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.rtbNotificacion);
+            this.Controls.Add(this.dtNotificacion);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.lbMensaje);
             this.Controls.Add(this.txtUpdate);
@@ -89,7 +89,7 @@
         private System.Windows.Forms.TextBox txtUpdate;
         private System.Windows.Forms.Label lbMensaje;
         private System.Windows.Forms.Button btnActualizar;
-        private System.Windows.Forms.RichTextBox rtbNotificacion;
+        private System.Windows.Forms.DataGrid dtNotificacion;
     }
 }
 
