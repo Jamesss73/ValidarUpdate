@@ -40,8 +40,9 @@ namespace FinalBasesDatosII.Logica
                 else { 
                     validarExistenciaTabla(nombreTabla);
                     ValidarDatosTabla(nombreTabla);
-                    foreach ( )
-                    ValidarColumna(nombreTabla,)
+                    foreach (string nombreColumna in nombresColumnas ) {
+                        ValidarColumna(nombreTabla, nombreColumna); 
+                    }
                     return true;
 
                 }
