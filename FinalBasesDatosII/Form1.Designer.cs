@@ -31,7 +31,7 @@
             this.txtUpdate = new System.Windows.Forms.TextBox();
             this.lbMensaje = new System.Windows.Forms.Label();
             this.btnActualizar = new System.Windows.Forms.Button();
-            this.dtNotificacion = new System.Windows.Forms.DataGrid();
+            this.rtNotificacion = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // txtUpdate
@@ -60,20 +60,21 @@
             this.btnActualizar.UseVisualStyleBackColor = true;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
-            // rtbNotificacion
+            // rtNotificacion
             // 
-            this.dtNotificacion.Location = new System.Drawing.Point(24, 165);
-            this.dtNotificacion.Name = "dtNotificacion";
-            this.dtNotificacion.Size = new System.Drawing.Size(753, 265);
-            this.dtNotificacion.TabIndex = 3;
-            this.dtNotificacion.Text = "";
+            this.rtNotificacion.Location = new System.Drawing.Point(24, 173);
+            this.rtNotificacion.Name = "rtNotificacion";
+            this.rtNotificacion.Size = new System.Drawing.Size(753, 265);
+            this.rtNotificacion.TabIndex = 3;
+            this.rtNotificacion.Text = "";
+            //this.rtNotificacion.TextChanged += new System.EventHandler(this.rtNotificacion_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dtNotificacion);
+            this.Controls.Add(this.rtNotificacion);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.lbMensaje);
             this.Controls.Add(this.txtUpdate);
@@ -89,7 +90,7 @@
         private System.Windows.Forms.TextBox txtUpdate;
         private System.Windows.Forms.Label lbMensaje;
         private System.Windows.Forms.Button btnActualizar;
-        private System.Windows.Forms.DataGrid dtNotificacion;
+        private System.Windows.Forms.RichTextBox rtNotificacion;
     }
 }
 

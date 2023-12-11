@@ -19,18 +19,19 @@ namespace FinalBasesDatosII
             InitializeComponent();
         }
 
-        DiccionarioDatos dd = new DiccionarioDatos();
         Servicios servicios = new Servicios();
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
-
+            rtNotificacion.Clear();
+            rtNotificacion.Text = "Validando Sintaxis de la sentencia UPDATE \n";
+            rtNotificacion.Clear();
             string sentenciaUpdate = txtUpdate.Text.Trim();
             sentenciaUpdate = sentenciaUpdate.ToUpper();
 
-            DataTable dt = servicios.ValidarSintaxis(sentenciaUpdate);
-            dtNotificacion.DataSource = dt; 
+            string resultado = servicios.ValidarSintaxis(sentenciaUpdate);
+
+            rtNotificacion.Text = resultado;
 
 
         }
@@ -38,10 +39,10 @@ namespace FinalBasesDatosII
 
 
 
-   
-        
-        
-        
+
+
+
+
         private bool Update1column(String sentencia)
         {
             string pattern = @"^UPDATE\s+([\w\d_]+)\s+SET\s+(\w+\s*=\s*[\w\d']+)\s+WHERE\s+(.+);$";
@@ -74,5 +75,7 @@ namespace FinalBasesDatosII
                 return true;
             return false;
         }
+
+      
     }
 }
